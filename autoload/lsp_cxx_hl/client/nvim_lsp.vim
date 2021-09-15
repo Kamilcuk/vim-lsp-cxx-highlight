@@ -5,7 +5,7 @@ function! lsp_cxx_hl#client#nvim_lsp#init() abort
         call s:doinit()
 
         augroup lsp_cxx_hl_nvim_lsp_init
-            autocmd! 
+            autocmd!
             autocmd VimEnter *  call s:doinit()
         augroup END
     else
@@ -23,20 +23,20 @@ then
   handlers = vim.lsp.callbacks
 end
 
-handlers['$cquery/publishSemanticHighlighting'] = function(err, method, params, client_id)
-    vim.api.nvim_call_function('lsp_cxx_hl#client#nvim_lsp#cquery_hl', {params})
+handlers['$cquery/publishSemanticHighlighting'] = function(err, result, ctx, config)
+    vim.api.nvim_call_function('lsp_cxx_hl#client#nvim_lsp#cquery_hl', {result})
 end
 
-handlers['$cquery/setInactiveRegions'] = function(err, method, params, client_id)
-    vim.api.nvim_call_function('lsp_cxx_hl#client#nvim_lsp#cquery_regions', {params})
+handlers['$cquery/setInactiveRegions'] = function(err, result, ctx, config)
+    vim.api.nvim_call_function('lsp_cxx_hl#client#nvim_lsp#cquery_regions', {result})
 end
 
-handlers['$ccls/publishSemanticHighlight'] = function(err, method, params, client_id)
-    vim.api.nvim_call_function('lsp_cxx_hl#client#nvim_lsp#ccls_hl', {params})
+handlers['$ccls/publishSemanticHighlight'] = function(err, result, ctx, config)
+    vim.api.nvim_call_function('lsp_cxx_hl#client#nvim_lsp#ccls_hl', {result})
 end
 
-handlers['$ccls/publishSkippedRanges'] = function(err, method, params, client_id)
-    vim.api.nvim_call_function('lsp_cxx_hl#client#nvim_lsp#ccls_regions', {params})
+handlers['$ccls/publishSkippedRanges'] = function(err, result, ctx, config)
+    vim.api.nvim_call_function('lsp_cxx_hl#client#nvim_lsp#ccls_regions', {result})
 end
 EOF
 endfunction
