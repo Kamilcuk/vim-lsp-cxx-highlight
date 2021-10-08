@@ -19,8 +19,11 @@ function! s:buf_add_hl(buf, ns_id, hl_group,
     " single line symbol
     if a:s_line == a:e_line
         if a:e_char - a:s_char > 0
+            let line = getbufline(a:buf, a:s_line + 1)[0]
             call nvim_buf_add_highlight(a:buf, a:ns_id, a:hl_group,
-                        \ a:s_line, a:s_char, a:e_char)
+                        \ a:s_line,
+                        \ byteidx(line, a:s_char),
+                        \ byteidx(line, a:e_char))
             return
         else
             return
